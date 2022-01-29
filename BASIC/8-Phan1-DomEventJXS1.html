@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Làm việc với JSX
+    // Phần I.
+      - Xử lý D0M events
+       Component do chúng ta định nghĩa phải viết
+         in hoa kỉ tự đầu
+           Chọn component trong 1 object
+       Boolers, Null & Undefined không được render
+      - Kết hợp toán tử logic để render theo điều kiện
+     // Phần II.
+       Props trong JSX
+           <YourComponent
+             propNamel="String literats"
+             propName2={expression}
+         />
+           Props default to "true"
+           Spread/Rest props
+           Children prop
+               - <YourComponent>String titerals</YourComponent>
+               <YourComponent>{expression}</YourComponent>
+           Render props --> -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+     <script type = "text/babel">
+         const data = [
+             {
+                name : "Ngọc Phú ",
+                Age : "18" , 
+             },
+             {
+                name : "Giao Giao",
+                Age : "20" , 
+             },
+             {
+                name : "Hạnh Phú",
+                Age :"23", 
+             },
+         ]
+         //
+        const PostItem  = ({data, onClick}) => (
+            <div>
+                <h1 
+                onClick = {()=>onClick(data)}
+                >{data.name}</h1>
+                <h1>{data.Age}</h1>
+            </div>
+        )
+        
+        function App()
+        {  
+            // USER
+            const handleClick = (el)=>{
+                console.log(el.name)
+            }
+
+            return (
+                <div id  ="wrapper">
+                    {data.map((el,index)=>(
+                      <PostItem 
+                        key =  {index}
+                        data={el}
+                        onClick = {handleClick} />
+                 
+                    ))}    
+                </div>
+            )
+        }
+         //index.js
+        ReactDOM.render(<App/>,document.getElementById("root"))
+     </script>
+</body>
+</html>
