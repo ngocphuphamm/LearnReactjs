@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+         <!-- Props
+     React elenents
+        Sử dụng props giống như với attribute của thẻ HTHL
+      -2 props class, for => classNane, htmlFor
+        Phải tuân theo quy ước có sản
+     React components
+       - Sử dụng props giống như đổi số cho Component
+       - Tự do đặt tên props
+           - Đất theo canelCase
+           - Có thể bao gồm dấu gạch ngang
+     Chủ ý:
+        Prop "key" là prop dặc biệt
+        Props ca bản là đổi số của Component
+           > Props có thế là bắt cứ kiểu dữ liệu gi
+       Sử dụng destructuring -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+     <script type = "text/babel">
+         const data = [
+             {
+                name : "Ngọc Phú ",
+                Age : "18" , 
+             },
+             {
+                name : "Giao Giao",
+                Age : "20" , 
+             },
+             {
+                name : "Hạnh Phú",
+                Age :"23", 
+             },
+         ]
+         //
+        const PostItem  = ({data}) => (
+            <div>
+                <h1>{data.name}</h1>
+                <h1>{data.Age}</h1>
+            </div>
+        )
+        
+        function App()
+        {  
+            var i = 0 ; 
+
+            return (
+                <div id  ="wrapper">
+                    {data.map((el,index)=>(
+                      <PostItem 
+                        key =  {index}
+                        data={el} />
+                    ))}    
+                </div>
+            )
+        }
+         //index.js
+        ReactDOM.render(<App/>,document.getElementById("root"))
+     </script>
+</body>
+</html>
