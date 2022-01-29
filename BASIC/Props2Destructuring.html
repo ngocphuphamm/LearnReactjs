@@ -29,16 +29,19 @@
     <div id="root"></div>
      <script type = "text/babel">
          //PostItem.JS
-        function PostItem(props)
+        function PostItem({
+            title,
+            description,
+            published,
+            callback =()=>{}
+        })
         {   
-            if(typeof props.callback === "function")
-             {  props.callback(Math.random())}
-             
+            callback()
             return (
                 <div className = "reactjs">
-                    <h1>{props.title}</h1>
-                    <h2>{props.description}</h2>
-                    <h3>{props.published}</h3>
+                    <h1>{title}</h1>
+                    <h2>{description}</h2>
+                    <h3>{published}</h3>
                  </div>
             )
         }
