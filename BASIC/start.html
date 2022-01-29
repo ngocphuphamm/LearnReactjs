@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // tình huống 1 
+        // const h1DOM = document.createElement("h1");
+        // h1DOM.title = "HELLO";
+        // h1DOM.className = "heading";
+        // h1DOM.innerText = " Ngọc Phú";
+        // document.body.appendChild(h1DOM);
+
+        // // REACt  ELEMNENT 
+        // // React.createElement(type,props,children,n Children)
+        // const h1React = React.createElement("h1",{
+        //     title: "hello",
+        //     className: "ReactHeading",
+        // },"Hello Guy");
+
+        // console.log(h1DOM);
+
+        // Tình huống 2 
+         const ulDOM  = document.createElement("ul");
+         ulDOM.id = "ulDom"
+         ulDOM.style = "color : red; font-size : 30 px"
+        
+         const liDOM1 = document.createElement("li");
+         liDOM1.innerText = "Ngọc Phú";
+         liDOM1.id = "headingliDom";
+         const liDOM2 = document.createElement("li");
+         liDOM2.innerText = "Ngọc Phú 2 "
+         
+         ulDOM.appendChild(liDOM1);
+         ulDOM.appendChild(liDOM2);
+
+         document.body.appendChild(ulDOM);
+            
+
+         //REACT 
+         const ulReact = React.createElement("ul",{
+            id = "ulHeading",
+            style = "color : red; font-size : 30px"
+         },
+                React.createElement("li",{
+                    id  : "li-id"
+                },"Ngọc Phú"),
+                React.createElement("li",null,"Ngọc Phú 2"),
+         )
+         console.log(ulReact)
+         
+    </script>
+</body>
+</html>
