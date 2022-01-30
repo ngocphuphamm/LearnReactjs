@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Làm việc với JSX
+
+     // Phần II.
+       Props trong JSX
+           <YourComponent
+             propNamel="String literats"
+             propName2={expression}
+         />
+           Props default to "true"
+           Spread/Rest props
+           Children prop
+               - <YourComponent>String titerals</YourComponent>
+               <YourComponent>{expression}</YourComponent>
+           Render props --> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+     <script type = "text/babel">
+         function Input ({label,...inputProps}){
+             return ( 
+                 <div>
+                    <label>{label}</label>
+                     <input {...inputProps}/>
+                </div>
+             )
+         }
+         function Button({children}) {
+        
+            return (
+                <button>{children}</button>
+            )
+         }
+
+         function List({data,children}){
+         
+             return (
+                <ul>
+                  {data.map((el)=>children(el))}
+                </ul>
+             )
+
+         }
+        
+        function App()
+        {  
+            var cars = ["BMS","SOLO","SMS"]
+            // USER
+        //    const title = "Ngoc Phu"
+        //    const handleFocus = ()=> {console.log(Math.random())}
+        //     return (
+        //         <div id  ="wrapper">
+        //             <Input label = "Full name "
+        //                     placeholder = "Enter full name"
+        //                     type = "text"
+        //                     onFocus =  {handleFocus}
+        //             ></Input>
+        //             <Button>Click me</Button>
+        //         </div>
+        //     )
+
+        // RENDER PROPS 
+       
+            return (
+                <div id="wrapper">
+                    <List data={cars}>{(el)=>(
+                        <li>{el}</li>
+                    )}</List>   
+                        
+                </div>
+            )
+        }
+         //index.js
+        ReactDOM.render(<App/>,document.getElementById("root"))
+     </script>
+</body>
+</html>
