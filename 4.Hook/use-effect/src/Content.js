@@ -7,39 +7,56 @@ import { useState } from "react";
  -Gọi callback mỗi khi component re-render the 
  - Gọi callback sau khi component thêm element vào DOM 
  2.useEffect(callback,[])
- 3.useEffect(callback,[dependency])*/
-
+ // Chỉ gọi call back 1 lần sau khi component mouted 
+ 3.useEffect(callback,[dependency])
+ // callback sẽ được gọi lại khi dependency thay đởi 
+ */
+const tab = ['posts','comments','albums']
 function Content()
 {
     const [title,setTitle] = useState("")
-    const [data,setData] = useState([]);
+    const [posts,setPosts] = useState([]);
+    const [type,setType] = useState("posts");
+    console.log(type)
     useEffect(()=>
     {
         document.title = title
-        console.log("Re-render",title)
+     
     })
     useEffect(()=>{
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch(`https://jsonplaceholder.typicode.com/${type}`)
         .then( res => res.json())
         .then((data)=>
         {
-           setData(data);
+           setPosts(data);
         })
-    })
+    },[type])
 
-
+ 
     return (
         <div>
+
+            {tab.map((el)=> 
+              (<button
+              style = {type === el ? {
+                  color : "red",
+                  backgroundColor : "blue" 
+              } : {} }
+                key ={el}
+                onClick={()=> setType(el)}>
+                {el}
+                </button>)
+            )}
         <input value = {title}
              
             onChange = { e => setTitle(e.target.value)}/>
-    {    console.log("render")}
+   
         
         <ul>
           
-                {data.map((el)=> (
+                {posts.map((el)=> (
                     <li key={el.id}>
-                        {el.title}
+                        {el.title || el.name}
                     </li>
                 ))}
       
