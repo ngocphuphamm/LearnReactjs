@@ -6,13 +6,14 @@ import { useState } from "react";
 
 
 function App() {
+ 
   const [show,setShow] = useState(false);
   const handleToogle = () => {
     setShow(!show)
   }
   return (
     <div className="App">
-       
+      
         <button onClick={handleToogle}>Toogle</button>
         {show && <Content/>}
         

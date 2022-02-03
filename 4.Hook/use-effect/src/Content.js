@@ -20,14 +20,25 @@ import { useState } from "react";
  // Scroll lắng nghe cuộn trang 
  // Resize 
 
+
+ ///----------------------------------------------------------------
+ // 1.Callback luôn được gọi sau khi component mounted
+ // 2.Cleanup function luôn được gọi trước khi component unmounted
+ // 3.Cleanup function luôn được gọi                 trước khi callback được gọi (trừ lần mounted)
 const tab = ['posts','comments','albums']
 function Content()
 {
+    // hiển thi title trên thanh web
     const [title,setTitle] = useState("")
+    // hiển thị dữ liệu trên call api 
     const [posts,setPosts] = useState([]);
+    // hiển thị loại dữ liệu được call api
     const [type,setType] = useState("posts");
+    // hiển thị nút button ghi scoll thanh xuống 
     const[showGotoTop,setShowGotoTop] = useState(false)
-    console.log(type)
+    //  đếm ngược
+    const [countdown,setCountdown] = useState(180)
+    // hiển thi sự kiện để bắt lên  title
     useEffect(()=>
     {
         document.title = title
@@ -42,7 +53,7 @@ function Content()
            setPosts(data);
         })
     },[type])
-
+    // scroll
     useEffect(()=>{
         const handleScroll = () => {
             //khoảng cách cuộn xuống dưới bao nhiêu pixel 
@@ -50,20 +61,55 @@ function Content()
            {
                // show 
                setShowGotoTop(true)
+                console.log("set state")
            }
            else
            {
                //hide
                setShowGotoTop(false)
            }
+           console.log("render")
+           // cách viết nâng cao ch
+        //    setShowGotoTop(window.scrollY >= 200)
         }
         // dùng effect dạng 2 
         // add event listener 
         window.addEventListener ("scroll",handleScroll)
+        console.log("addEventListener");
+        // Cleanup function
+        return()=>{
+            window.removeEventListener ("scroll",handleScroll)
+            console.log("removeEventListener");
+        }
+    
     })
- 
+    /// RESIZE
+    const [width,setWidth] = useState(window.innerWidth)
+    useEffect(()=>{
+        const changeSize = () => {
+            setWidth(window.innerWidth)
+        }
+        window.addEventListener("resize",changeSize)
+        return (()=>{
+            window.removeEventListener("resize",changeSize)
+        })
+    })
+
+    useEffect(()=>{
+       const timerID =  setInterval(()=>{
+            setCountdown((prevData)=>{
+              return  prevData -1 ; 
+             })
+            console.log(countdown);
+        },1000)
+        return ()=> { clearInterval(timerID)}
+    },[])
+  
     return (
         <div>
+        <h1>Đếm ngược {countdown}</h1>
+
+            <h1>{width}</h1>
 
             {tab.map((el)=> 
               (<button
@@ -76,6 +122,7 @@ function Content()
                 {el}
                 </button>)
             )}
+
         <input value = {title}
              
             onChange = { e => setTitle(e.target.value)}/>

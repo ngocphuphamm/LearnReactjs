@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Content from "./Content";
+
 import './App.css';
 
 function App() {
@@ -25,7 +27,15 @@ function App() {
     setJob("");
   }
   console.log(jobs)
+
+
+
+  const [show,setShow] = useState(false);
+  const handleToogle = () => {
+    setShow(!show)
+  }
   return (
+    <div>
     <div className="App">
         <input
         value = {job}
@@ -43,6 +53,12 @@ function App() {
             </div>
           ))}
         </ul>
+    </div>
+  
+    <div>
+        <button onClick= {handleToogle}>Toogle</button>
+       {show && <Content/>}
+    </div>
     </div>
   );
 }

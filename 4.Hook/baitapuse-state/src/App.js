@@ -105,57 +105,58 @@ return (
       )*/
 
   ///////////////////////////VD3 CHECKBOX/./////////////
-    //// radio ///
-    const [checked,setChecked] = useState([]);
+    // //// radio ///
+    // const [checked,setChecked] = useState([]);
 
-    console.log(checked);
-    const handleCheck = (id)=>
-    {
-        setChecked((prevData)=>
-        {
-          // kiểm tra nó check hay chưa 
-          const isChecked = checked.includes(id)
-          if(isChecked)
-          {
-            // gọi filter lọc bỏ cái index mình muốn bỏ 
-            // return lại các thằng mà ko duoc lựa chọn mà không được lựa chọn ở đây là các 
-            // mảng được lựa chọn do ta chọn index thì t muốn loại bỏ nó r 
-            
-            return checked.filter((item)=> item !== id)
-          }
-          else
-          {
-            //checked
-            return  [
-              ...prevData,
-              id
-            ]
-          }
+    // console.log(checked);
+    // const handleCheck = (id)=>
+    // {
+    //     setChecked((prevData)=>
+    //     {
+    //       // kiểm tra nó check hay chưa 
+    //       const isChecked = checked.includes(id)
+    //       if(isChecked)
+    //       {
+    //         // gọi filter lọc bỏ cái index mình muốn bỏ 
+    //         // return lại các thằng mà ko duoc lựa chọn mà không được lựa chọn ở đây là các 
+    //         // mảng được lựa chọn do ta chọn index thì t muốn loại bỏ nó r 
+
+    //         return checked.filter((item)=> item !== id)
+    //       }
+    //       else
+    //       {
+    //         //checked
+    //         return  [
+    //           ...prevData,
+    //           id
+    //         ]
+    //       }
        
-        })
+    //     })
     
-    }
-    const handleSubmit = ()=>
-     {
-        console.log({id:checked})
-     }
+    // }
+    // const handleSubmit = ()=>
+    //  {
+    //     console.log({id:checked})
+    //  }
      
      
   
-     return ( 
-          <div >
-            {courses.map((el)=> 
-            (
-                <div key = {el.id}>
-                  <input 
-                  checked = {checked.includes(el.id)}
-                   type ="checkbox" onChange={()=>handleCheck(el.id)} />{el.name}
-                </div>
-            ))}
-             <button onClick={handleSubmit}>Register</button>
-          </div>
+    //  return ( 
+    //       <div >
+    //         {courses.map((el)=> 
+    //         (
+    //             <div key = {el.id}>
+    //               <input 
+    //               checked = {checked.includes(el.id)}
+    //                type ="checkbox" onChange={()=>handleCheck(el.id)} />{el.name}
+    //             </div>
+    //         ))}
+    //          <button onClick={handleSubmit}>Register</button>
+    //       </div>
        
-        )
+    //     )
+   
 }
 
 export default App;
