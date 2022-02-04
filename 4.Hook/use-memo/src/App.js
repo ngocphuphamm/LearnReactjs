@@ -1,28 +1,60 @@
 import logo from './logo.svg';
-import {useState,memo} from 'react'
 import './App.css';
-import Content from './Content';
-// 1. menol) -> Higher Order Component (HOC)
-// 2. useCallback()
-// Hooks
-// HOC
-// Render props
+import {useState,useMemo,useRef} from 'react';
 
+// useMemo (CALLBACK,[]) tránh lặp lại trong function logic phức tạp 
+// để dependency thì nó chỉ tính toán 1 lần thôi sau đó
+// trả về kết quả tính toán từ lần trước 
 
-// Memo : khi có một component có nhiều props cần render gây ảnh hưởng đến component
-// Dùng memo cho các component con có các props đã render r không cần render lại 
 function App() {
-  
-  const [count,setCount] = useState(0)
-  
-  const increase = ()=>{
-    setCount(count +1 )
+
+  const nameRef = useRef()
+
+  const [name,setName] = useState('');
+  const [price,setPrice] = useState('');
+  const [products,setProducts] = useState([]);
+  const handleClick = ()=>{
+    setProducts([...products,{
+      name,
+      price : parseInt(price)
+    }])
+    
+    setName('');
+    setPrice('');
+
+
+    nameRef.current.focus()
   }
+  const total = 
+  useMemo(()=>{
+    const result = products.reduce((result,el)=>{
+      console.log("tính toán lại")
+      return  result + el.price
+   },0)
+   return result
+  },[products])
+
+
   return (
     <div className="App">
-          <Content />
-          <h1>{count}</h1>
-          <button onClick = {increase}>Click me</button>
+        <input value={name} 
+        ref = {nameRef}
+        placeholder="Entername"
+        onChange={e=> setName(e.target.value)} />
+        <br/>
+        <input value={price} placeholder = "Enter price"
+        onChange={e=> setPrice(e.target.value)}
+        />
+        <br/>
+        <button onClick = {handleClick}>Add</button>
+         <br/>
+        Total: {total}
+
+        <ul>
+          {products.map((el,index)=>(
+            <li key={index}>{el.name}, {el.price}</li>
+          ))}
+        </ul>
     </div>
   );
 }
