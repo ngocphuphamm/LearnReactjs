@@ -30,10 +30,13 @@ function emitComment(id){
     )
   },2000)
 }
-// phát event 
+// // phát event 
 emitComment(1);
 emitComment(2);
 emitComment(3);
+
+
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

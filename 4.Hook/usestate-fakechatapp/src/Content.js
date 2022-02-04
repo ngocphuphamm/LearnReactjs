@@ -25,6 +25,7 @@ function Content ()
      const handleComment =({detail}) => {
         console.log(detail)
      }
+     // lắng nghe sự kiện event bên index.js 
      window.addEventListener(`lesson-${lessonId}`,handleComment)
      
      //clean up
