@@ -1,7 +1,8 @@
+import Paragraph from './Paragraph';
 function Content(){
     return (
         <div>
-            <h1>Hello</h1>
+            <Paragraph/>
         </div>
     )
 }
