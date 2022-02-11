@@ -1,3 +1,4 @@
-import createContext from 'react';
+import {createContext} from 'react';
 // tạo ra themee Context Provider
-export const Context = createContext();
+const Context = createContext();
+export default Context;
