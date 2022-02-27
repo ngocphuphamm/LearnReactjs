@@ -1,5 +1,5 @@
 import userReducer from "./user";
-// tổng hợp các reducer
+// tổng hợp các
 import{combineReducers} from "redux";
 import hobbyReducer from "./hobby";
 
